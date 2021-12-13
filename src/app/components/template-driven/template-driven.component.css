@@ -1,0 +1,15 @@
+/*Se o botao estivar sujo (dirty, for tocado) e estiver invalido*/
+input.ng-dirty.ng-invalid {
+  border: 2px solid red;
+}
+
+/*Se o botao estiver tocado e valido*/
+input.ng-dirty.ng-valid {
+  border: 2px solid green;
+}
+/*Se o formulario estiver valido*/
+form.ng-invalid button{
+  pointer-events: none;
+  opacity: 0.8;
+  background-color: darkgray;
+}
