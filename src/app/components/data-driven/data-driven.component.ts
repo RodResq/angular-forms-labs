@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
 
 
 @Component({
@@ -11,7 +12,9 @@ export class DataDrivenComponent implements OnInit {
 
   myForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient) { }
 
   ngOnInit(): void {
     // this.myForm = new FormGroup({
@@ -35,8 +38,18 @@ export class DataDrivenComponent implements OnInit {
         localidade: [null],
         uf: [null]
       })
-    })
+    });
 
+    this.myForm.get('informacoes.nome').valueChanges.subscribe(
+      value => console.log(`Nome Alterado ${value}`)
+    )
+  }
+
+  getAddress() {
+    this.http.get(`http://viacep.com.br/ws/${this.myForm.get('endereco.cep').value}/json`)
+      .subscribe(
+        endereco => this.myForm.get('endereco').patchValue(endereco)
+      )
   }
 
 }
