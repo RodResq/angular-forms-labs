@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
+
 @Component({
   selector: 'app-data-driven',
   templateUrl: './data-driven.component.html',
@@ -18,9 +19,22 @@ export class DataDrivenComponent implements OnInit {
     //   email: new FormControl(null)
     // });
 
-    this.myForm = this.formBuilder.group({
-      nome: ['TreinaWeb'],
-      email: ['email@eamil.com']
+    const fb = this.formBuilder;
+    this.myForm = fb.group({
+      informacoes: fb.group({
+        nome: [null],
+        idade: [null],
+        email: [null],
+        confirmaEmail: [null],
+      }),
+      endereco: fb.group({
+        cep: [null],
+        logradouro: [null],
+        complemento: [null],
+        bairro: [null],
+        localidade: [null],
+        uf: [null]
+      })
     })
 
   }
