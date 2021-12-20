@@ -17,7 +17,7 @@ import { DataDrivenComponent } from './components/data-driven/data-driven.compon
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

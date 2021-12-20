@@ -37,6 +37,8 @@ export class DataDrivenComponent implements OnInit {
         idade: [null],
         email: [null],
         confirmaEmail: [null],
+        empregado: [null],
+        sexo: ['M']
       }),
       endereco: fb.group({
         cep: [null],
@@ -58,6 +60,19 @@ export class DataDrivenComponent implements OnInit {
       .subscribe(
         endereco => this.myForm.get('endereco').patchValue(endereco)
       )
+  }
+
+  myState() {
+    console.log('Entrou em myState()');
+    const myState = {nome:'Rio de Janeiro', sigla:'RJ'};
+    this.myForm.get('endereco.uf').setValue(myState);
+  }
+
+  compareStates(obj1, obj2) {
+    if (obj1 && obj2) {
+      return obj1.sigla === obj2.sigla;
+    }
+    return false;
   }
 
 }

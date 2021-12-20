@@ -1,3 +1,5 @@
+<button>CLICK ME</button>
+
 <form [formGroup]="myForm">
   <div formGroupName="informacoes">
     <label>
@@ -16,6 +18,20 @@
       <p>Confirma Email</p>
       <input type="email" formControlName="confirmaEmail">
     </label>
+    <label>
+      <p>Esta Empregado ?</p>
+      <input type="checkbox">
+    </label>
+    <div>
+      <p>Sexo</p>
+      <label>
+        <input formControlName="sexo" type="radio" [value]="'M'">  Masculino
+      </label>
+      <label>
+        <input formControlName="sexo" type="radio" [value]="'F'">  Feminino
+      </label>
+    </div>
+
   </div>
   <div formGroupName="endereco">
     <label>
@@ -42,7 +58,7 @@
       <p>Estado</p>
 <!--      <input type="text" formControlName="uf">-->
       <select formGroupName="uf">
-        <option *ngFor="let state of states" [value]="state.sigla">{{ state.nome }}</option>
+        <option *ngFor="let state of states" [ngValue]="state.sigla">{{ state.nome }}</option>
       </select>
     </label>
   </div>
