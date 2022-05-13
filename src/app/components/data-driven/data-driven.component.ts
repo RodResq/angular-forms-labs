@@ -1,5 +1,6 @@
+import { ValidatorsService } from './../../services/validators.service';
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 
 
@@ -22,7 +23,8 @@ export class DataDrivenComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private validatorsService: ValidatorsService) { }
 
   ngOnInit(): void {
     // this.myForm = new FormGroup({
@@ -33,11 +35,11 @@ export class DataDrivenComponent implements OnInit {
     const fb = this.formBuilder;
     this.myForm = fb.group({
       informacoes: fb.group({
-        nome: [null],
+        nome: [null, [Validators.required, Validators.minLength(4), this.validatorsService.nameValidation], [this.validatorsService.userValidation.bind(this.validatorsService)]],
         idade: [null],
-        email: [null],
+        email: [null, [Validators.required, Validators.email]],
         confirmaEmail: [null],
-        empregado: [null],
+        empregado: [null, Validators.pattern('true')],
         sexo: ['M']
       }),
       endereco: fb.group({
@@ -73,6 +75,10 @@ export class DataDrivenComponent implements OnInit {
       return obj1.sigla === obj2.sigla;
     }
     return false;
+  }
+
+  onSubmit() {
+    console.log(this.myForm);
   }
 
 }

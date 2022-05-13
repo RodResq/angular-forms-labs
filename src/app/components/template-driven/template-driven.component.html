@@ -2,7 +2,7 @@
   <div ngModelGroup="informacoes">
     <label>
       <p>Nome</p>
-      <input #elNome="ngModel" type="text" name="nome"  required minlength="3" maxlength="5" [(ngModel)]="informacoes.nome">
+      <input #elNome="ngModel" type="text" name="nome" required pattern="[a-z]{2}" [(ngModel)]="informacoes.nome" [ngStyle]="{'border: 2px solid red': 'true'}"]>
       <ul *ngIf="elNome.dirty && elNome.invalid">
         <li *ngIf="elNome.errors?.required">Campo Obrigatorio</li>
         <li *ngIf="elNome.errors?.minlength">Nome muito curto</li>
